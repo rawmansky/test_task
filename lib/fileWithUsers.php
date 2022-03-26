@@ -22,7 +22,7 @@ class FileWithUsers {
                 throw new Exception("Unable to open file!");
             }
             while(!feof($file)) {
-                $line = fgets($file);
+                $line = str_replace(array(" ", "\n", "\t"), "", fgets($file));
                 if (substr_count($line, ",") >= 2) {
                     [$name, $surname, $email] = explode(",", $line);
                     $user = new User($name, $surname, $email);

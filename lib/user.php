@@ -10,7 +10,25 @@ class User {
         $this->email = $email;
     }
 
-    function validate_email () {
-        
+    function validateEmail () {
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $res = true;
+        } else {
+            echo "Email $this->email is invalid for user $this->name !" . PHP_EOL;
+            $res = false;
+        }
+        return $res;
+    }
+
+    function getLowerCaseEmail () {
+        return strtolower($this->email);
+    }
+
+    function getCapitalisedName () {
+        return ucfirst($this->name);
+    }
+
+    function getCapitalisedSurname () {
+        return ucfirst($this->surname);
     }
 }
