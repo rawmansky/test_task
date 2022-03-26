@@ -31,8 +31,8 @@ class FileWithUsers {
             }
             fclose($file);
             echo "File parsed!" . PHP_EOL;
-        } catch (Exception $t) {
-            echo $t->getMessage() . PHP_EOL;
+        } catch (Exception $e) {
+            echo $e->getMessage() . PHP_EOL;
         }
     }
 

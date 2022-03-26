@@ -5,6 +5,6 @@ include "lib/fileWithUsers.php";
 include "lib/db.php";
 
 $fileWithUsers = new FileWithUsers($argv[1]);
-foreach($fileWithUsers->getUsers() as $user) {
-    $user->validateEmail();
-}
+$db = new Db("10.254.254.84", "test", "test");
+$db->createTable();
+$db->insertUsers($fileWithUsers->getUsers());
