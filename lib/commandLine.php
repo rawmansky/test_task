@@ -38,6 +38,8 @@ class CommandLine {
             $result = true;
         } elseif (isset($this->options["dry_run"]) and isset($this->options["file"])) {
             $result = true;
+        } elseif (isset($this->options["help"])) {
+            $result = true;
         }
 
         if (!$result) {
