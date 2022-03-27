@@ -3,11 +3,13 @@ class Db {
     private $host;
     private $user;
     private $password;
+    private $dbname;
 
-    function __construct($host, $user, $password) {
+    function __construct($host, $user, $password, $dbname) {
         $this->host = $host;
         $this->user = $user;
         $this->password = $password;
+        $this->dbname = $dbname;
     }
 
     function createTable() {
@@ -25,8 +27,9 @@ class Db {
                 throw new Exception("Unable to create table: " . $db->error);
             };
             $db->close();
+            echo "Table created!" . PHP_EOL;
         } catch (Exception $e) {
-            echo $e->getMessage() . PHP_EOL;
+            die($e->getMessage() . PHP_EOL);
         }
     }
 
@@ -54,18 +57,18 @@ class Db {
             $db->close();
             echo "Table data is updated!" . PHP_EOL;
         } catch (Exception $e) {
-            echo $e->getMessage() . PHP_EOL;
+            die($e->getMessage() . PHP_EOL);
         }
     }
 
     private function connect () {
         try {
-            $db = @new mysqli($this->host, $this->user, $this->password, "test");
+            $db = @new mysqli($this->host, $this->user, $this->password, $this->dbname);
             if ($db->connect_errno) {
                 throw new Exception("Unable to connect to DB: " . $db->connect_error);
             }
         } catch (Exception $e) {
-            echo $e->getMessage() . PHP_EOL;
+            die($e->getMessage() . PHP_EOL);
         }
         return $db;
     }
