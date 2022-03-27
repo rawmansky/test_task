@@ -34,7 +34,7 @@ class CommandLine {
         $result = false;
         if ((isset($this->options["create_table"]) or isset($this->options["file"])) and 
             isset($this->options["u"]) and isset($this->options["p"]) and 
-            isset($this->options["n"]) and isset($this->options["n"])) {
+            isset($this->options["h"]) and isset($this->options["n"])) {
             $result = true;
         } elseif (isset($this->options["dry_run"]) and isset($this->options["file"])) {
             $result = true;

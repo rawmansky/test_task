@@ -21,10 +21,17 @@ class FileWithUsers {
             if (!$file) {
                 throw new Exception("Unable to open file!");
             }
+            $columnsName = array();
+            $delimeter = ",";
             while(!feof($file)) {
                 $line = str_replace(array(" ", "\n", "\t"), "", fgets($file));
-                if (substr_count($line, ",") >= 2) {
-                    [$name, $surname, $email] = explode(",", $line);
+                if (empty($columnsName)) {
+                    [$columnsName[0], $columnsName[1], $columnsName[2]] = explode($delimeter, $line);
+                } elseif (substr_count($line, $delimeter) >= 2) {
+                    [${$columnsName[0]}, ${$columnsName[1]}, ${$columnsName[2]}] = explode($delimeter, $line);
+                    if (!isset($name) or !isset($surname) or !isset($email)) {
+                        throw new Exception("File $this->name doesn't have column 'name', 'surname' or 'email'!");
+                    }
                     $user = new User($name, $surname, $email);
                     array_push($this->users, $user);
                 }

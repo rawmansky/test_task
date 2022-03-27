@@ -40,7 +40,7 @@ class Db {
 
         try {
             if (!$stmt = @$db->prepare($sql)) {
-                throw new Exception("Table data is not updated: " . $stmt->error);
+                throw new Exception("Table data is not updated: " . $db->error);
             }
             foreach ($users as $user) {
                 if ($user->validateEmail()) {
